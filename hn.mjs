@@ -7,7 +7,6 @@ import inquirer from 'inquirer'
 function f(){
   console.log('..⏳')
 }
-setTimeout(f,0);
 const {argv}=yargs(process.argv);
 const res=await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
 const data =await res.json();
@@ -16,7 +15,6 @@ fetch(`https://hacker-news.firebaseio.com/v0/item/${postId}.json`)
   .then(response => response.json())
   .then(data => {
     const link = data.url;
-    console.log (link)
     if (argv.print){
         console.log (chalk.bgRed(data.title));
 
@@ -33,10 +31,6 @@ fetch(`https://hacker-news.firebaseio.com/v0/item/${postId}.json`)
               console.log(link);
             }
           }) ;
-
-
-        
-      
     }
     else {open(data.url);}
   })
